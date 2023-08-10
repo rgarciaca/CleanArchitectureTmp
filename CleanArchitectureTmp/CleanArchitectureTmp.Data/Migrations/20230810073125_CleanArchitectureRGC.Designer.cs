@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitectureTmp.Data.Migrations
 {
     [DbContext(typeof(StreamerDbContext))]
-    [Migration("20230806181538_AgregarTablasEntidadesRelaciones")]
-    partial class AgregarTablasEntidadesRelaciones
+    [Migration("20230810073125_CleanArchitectureRGC")]
+    partial class CleanArchitectureRGC
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -36,12 +36,24 @@ namespace CleanArchitectureTmp.Data.Migrations
                     b.Property<string>("Apellido")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Actor");
+                    b.ToTable("Actores");
                 });
 
             modelBuilder.Entity("CleanArchitectureTmp.Domain.Director", b =>
@@ -53,6 +65,18 @@ namespace CleanArchitectureTmp.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Apellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -67,7 +91,7 @@ namespace CleanArchitectureTmp.Data.Migrations
                         .IsUnique()
                         .HasFilter("[VideoId] IS NOT NULL");
 
-                    b.ToTable("Director");
+                    b.ToTable("Directores");
                 });
 
             modelBuilder.Entity("CleanArchitectureTmp.Domain.Streamer", b =>
@@ -77,6 +101,18 @@ namespace CleanArchitectureTmp.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
@@ -96,6 +132,18 @@ namespace CleanArchitectureTmp.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
@@ -117,6 +165,21 @@ namespace CleanArchitectureTmp.Data.Migrations
 
                     b.Property<int>("VideoId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ActorId", "VideoId");
 
